@@ -1,0 +1,9 @@
+cff-version: 1.2.0
+title: "Bounded eBPF/XDP Service-Diversity Telemetry for Reconnaissance Containment at the IoT Edge"
+message: "If you use this repository, please cite the associated manuscript."
+type: software
+authors:
+  - family-names: "Tolay"
+    given-names: "Abdurrahman"
+repository-code: "https://github.com/AbdurrahmanTolay/iot-edge-xdp-recon-containment"
+license: "NOASSERTION"
