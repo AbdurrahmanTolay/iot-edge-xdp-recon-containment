@@ -1,0 +1,120 @@
+{
+  "calibration_registry_sha256": "bedd925f6d0deab03884e0cb0fd83d114c4d5cb78a8ccd45e647b3f3125cce75",
+  "calibration_run_ids": [
+    "RECON_20260908_PI_CAL_BN_R01",
+    "RECON_20260908_PI_CAL_BN_R02",
+    "RECON_20260908_PI_CAL_BN_R03",
+    "RECON_20260908_PI_CAL_BD_R01",
+    "RECON_20260908_PI_CAL_BD_R02",
+    "RECON_20260908_PI_CAL_BD_R03",
+    "RECON_20260908_PI_CAL_FAST_R01",
+    "RECON_20260908_PI_CAL_FAST_R02",
+    "RECON_20260908_PI_CAL_FAST_R03",
+    "RECON_20260908_PI_CAL_S3P1_R01",
+    "RECON_20260908_PI_CAL_S3P1_R02",
+    "RECON_20260908_PI_CAL_S3P2_R01",
+    "RECON_20260908_PI_CAL_S3P2_R02",
+    "RECON_20260908_PI_CAL_S3P3_R01",
+    "RECON_20260908_PI_CAL_S3P3_R02",
+    "RECON_20260908_PI_CAL_S3P4_R01",
+    "RECON_20260908_PI_CAL_S3P4_R02",
+    "RECON_20260908_PI_CAL_QUAR_R02",
+    "RECON_20260908_PI_CAL_QUAR_R03",
+    "RECON_20260908_PI_CAL_QUAR_R04",
+    "RECON_20260908_PI_CAL_PRESS_L1_R01",
+    "RECON_20260908_PI_CAL_PRESS_L2_R04",
+    "RECON_20260908_PI_CAL_PRESS_L3_R02",
+    "RECON_20260908_PI_CAL_S6B_R03"
+  ],
+  "created_by": "Abdurrahman Tolay",
+  "created_realtime_iso": "2026-09-08T06:30:52.817979+00:00",
+  "evidence": [
+    {
+      "path": "experiments/calibration/detector_selection_v1.json",
+      "sha256": "3acc3720c93c6567891545e79a413142df1e4184e225f0e408d7f6628f333fae"
+    },
+    {
+      "path": "experiments/calibration/capacity_selection_v1.json",
+      "sha256": "1151ebf2f67d0f1f6eb9af910f68493d368436a2a10656e42bdbde2177e62a4c"
+    },
+    {
+      "path": "experiments/calibration/timing_selection_v1.json",
+      "sha256": "1abff4ea5755994e2449339585f8c01f0f37f4649ea0c555e8afc83c51d675ad"
+    },
+    {
+      "path": "experiments/calibration/formal_accepted_runs.csv",
+      "sha256": "bedd925f6d0deab03884e0cb0fd83d114c4d5cb78a8ccd45e647b3f3125cce75"
+    },
+    {
+      "path": "automation/runtime_config.json",
+      "sha256": "fb7bbddc3acd46331658376f7d518024d30eb936b05e2710b86a5e1140d1686a"
+    },
+    {
+      "path": "implementation/controller/recon_controller.c",
+      "sha256": "5fa63a724363ba8c23c8aa73bffd595be2c12b28e40a2b99c0729a5d5a149a6f"
+    },
+    {
+      "path": "implementation/controller/recon_controller",
+      "sha256": "b4de847cb7a96e7d857e502ee0a51ca6cbef819e1262795f931d7c65e559c82b"
+    },
+    {
+      "path": "implementation/xdp/xdp_recon.c",
+      "sha256": "acec7cb3483f7030c10f212c3c1e459308ae0c0bd2c6cd87be2cc811a72c3f1d"
+    },
+    {
+      "path": "implementation/xdp/xdp_recon.o",
+      "sha256": "7c4f196679f2c97e3711a88c8eaf4ef07707854713dba0c607ed561fb7de6a9a"
+    },
+    {
+      "path": "automation/run_single.py",
+      "sha256": "797a04c6345af9228b7e637ea8689f49438a4d382ca688391a5568cba5a18d6e"
+    },
+    {
+      "path": "automation/temperature_guard.sh",
+      "sha256": "a916e3bd7885ad6088b7b17a6fdf31113c4b19613c3d1e1aaac0293c2204b9b6"
+    },
+    {
+      "path": "data/schemas/run_manifest.schema.json",
+      "sha256": "89fd0e953105b50d366aaadc28a08729b5890fad6a272f0d158c1f0835cfce36"
+    }
+  ],
+  "freeze_version": "MAIN_FREEZE_V1_20260908",
+  "notes": "Formal calibration freeze based only on the 24 accepted Stage-B calibration runs listed in formal_accepted_runs.csv. Supplemental CAL_CA evidence is excluded. Short/long windows retain the existing 5 s/30 s calibration pair; no post-hoc search over additional window candidates was performed. Benign-safe thresholds are derived as one above the observed maxima: short 5, long 6, rate count 81 over 5 s (16.2 probes/s). Telemetry capacity 4096 is retained from S7 evidence. Operational timing retains 250 ms polling, 5 s quarantine, 2 s cooldown and 1 s cleanup grace. controller_deadline_ms and cleanup_interval_s are reserved compatibility fields and remain null because the current controller does not implement them. recovery_observation_s is not a global parameter; run manifests use scenario-specific recovery_s. temperature_guard_c is not a scientific freeze parameter; thermal guard settings are recorded under operational_runtime and provenance-bound to runtime_config.json. Any later parameter change requires a new freeze version.",
+  "operational_runtime": {
+    "thermal_guard": {
+      "max_c": 75.0,
+      "max_wait_s": 300,
+      "poll_s": 5
+    }
+  },
+  "parameters": {
+    "allowlist_capacity": 64,
+    "cleanup_grace_s": 1,
+    "cleanup_interval_s": null,
+    "controller_deadline_ms": null,
+    "controller_poll_ms": 250,
+    "cooldown_s": 2,
+    "long_threshold": 6,
+    "long_window_s": 30,
+    "minimum_post_scan_s": 3,
+    "quarantine_capacity": 1024,
+    "quarantine_s": 5,
+    "rate_count_threshold": 81,
+    "rate_threshold_pps": 16.2,
+    "rate_window_s": 5,
+    "recovery_observation_s": null,
+    "s3_probe_intervals_ms": {
+      "P1": 1000,
+      "P2": 1600,
+      "P3": 2000,
+      "P4": 12000
+    },
+    "short_threshold": 5,
+    "short_window_s": 5,
+    "telemetry_capacity": 4096,
+    "temperature_guard_c": null,
+    "warmup_s": 3
+  },
+  "selection_procedure": "docs/experiment_specification_stage_b.md#9-threshold-selection-procedure",
+  "status": "FROZEN"
+}

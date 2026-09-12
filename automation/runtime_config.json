@@ -1,0 +1,14 @@
+{
+  "controller_binary": "implementation/controller/recon_controller",
+  "xdp_object": "implementation/xdp/xdp_recon.o",
+  "xdp_mode_probe": "xdp_mode_probe.json",
+  "resource_interval_s": 1.0,
+  "startup_check_s": 2.0,
+  "between_run_cooldown_s": 10.0,
+  "thermal_guard": {
+    "max_c": 75.0,
+    "max_wait_s": 300,
+    "poll_s": 5
+  },
+  "status": "FROZEN_STAGE_C_RUNTIME"
+}

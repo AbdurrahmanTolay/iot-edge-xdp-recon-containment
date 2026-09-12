@@ -1,0 +1,439 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "iot-recon-xdp/run_manifest.schema.json",
+  "title": "IoT reconnaissance experiment run manifest",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "run_id",
+    "project",
+    "freeze_version",
+    "manifest_status",
+    "phase",
+    "scenario",
+    "scenario_point",
+    "configuration",
+    "repetition",
+    "schedule_order",
+    "randomization_block",
+    "random_seed",
+    "retry_of",
+    "gateway_ip",
+    "scanner_ip",
+    "legitimate_client_ips",
+    "allowlisted_ips",
+    "target_manifest",
+    "target_manifest_sha256",
+    "protocol_mode",
+    "probe_interval_ms",
+    "planned_probe_count",
+    "short_window_s",
+    "long_window_s",
+    "rate_window_s",
+    "short_threshold",
+    "long_threshold",
+    "rate_count_threshold",
+    "rate_threshold_pps",
+    "controller_poll_ms",
+    "controller_deadline_ms",
+    "quarantine_s",
+    "cooldown_s",
+    "cleanup_grace_s",
+    "cleanup_interval_s",
+    "telemetry_capacity",
+    "allowlist_capacity",
+    "quarantine_capacity",
+    "interface_requested",
+    "xdp_mode_requested",
+    "git_commit",
+    "build_id",
+    "warmup_s",
+    "scan_s",
+    "minimum_post_scan_s",
+    "recovery_s",
+    "expected_logs",
+    "workload_configs",
+    "notes",
+    "gateway_ip_actual",
+    "interface_actual",
+    "kernel",
+    "boot_id",
+    "nic_driver",
+    "xdp_mode_actual",
+    "mtu",
+    "link_speed_mbps",
+    "cpu_governor",
+    "offload_state",
+    "environment_realtime_iso",
+    "clock_sync_method",
+    "clock_sync_status",
+    "clock_offset_us",
+    "clock_uncertainty_us",
+    "health_log",
+    "temperature_guard_log"
+  ],
+  "properties": {
+    "run_id": {
+      "type": "string",
+      "pattern": "^RECON_[0-9]{8}_PI_[A-Z0-9_]+_R[0-9]{2,}$"
+    },
+    "project": {
+      "const": "iot-recon-xdp"
+    },
+    "freeze_version": {
+      "type": "string",
+      "minLength": 1
+    },
+    "manifest_status": {
+      "enum": [
+        "DRAFT",
+        "FINALIZED"
+      ]
+    },
+    "phase": {
+      "enum": [
+        "PILOT",
+        "CALIBRATION",
+        "MAIN",
+        "CHARACTERIZATION"
+      ]
+    },
+    "scenario": {
+      "type": "string",
+      "minLength": 1
+    },
+    "scenario_point": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "configuration": {
+      "enum": [
+        "C0_T0",
+        "C0_T1",
+        "C1",
+        "C2",
+        "C3",
+        "C4"
+      ]
+    },
+    "repetition": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "schedule_order": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "randomization_block": {
+      "type": "string",
+      "minLength": 1
+    },
+    "random_seed": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "retry_of": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "pattern": "^RECON_"
+    },
+    "gateway_ip": {
+      "type": "string",
+      "minLength": 1
+    },
+    "scanner_ip": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "legitimate_client_ips": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "allowlisted_ips": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string"
+      }
+    },
+    "target_manifest": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "target_manifest_sha256": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "protocol_mode": {
+      "enum": [
+        "NONE",
+        "TCP",
+        "UDP",
+        "MIXED"
+      ]
+    },
+    "probe_interval_ms": {
+      "type": [
+        "number",
+        "null"
+      ],
+      "exclusiveMinimum": 0
+    },
+    "planned_probe_count": {
+      "type": [
+        "integer",
+        "null"
+      ],
+      "minimum": 0
+    },
+    "short_window_s": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "long_window_s": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "rate_window_s": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "short_threshold": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "long_threshold": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "rate_count_threshold": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "rate_threshold_pps": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "controller_poll_ms": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "controller_deadline_ms": {
+      "type": [
+        "integer",
+        "null"
+      ],
+      "minimum": 1,
+      "description": "Reserved schema field. Null for the current implementation; recon_controller does not implement or consume a controller deadline."
+    },
+    "quarantine_s": {
+      "type": "number",
+      "minimum": 0
+    },
+    "cooldown_s": {
+      "type": "number",
+      "minimum": 0
+    },
+    "cleanup_grace_s": {
+      "type": "number",
+      "minimum": 0
+    },
+    "cleanup_interval_s": {
+      "type": [
+        "number",
+        "null"
+      ],
+      "exclusiveMinimum": 0,
+      "description": "Reserved schema field. Null for the current implementation; physical quarantine cleanup is evaluated on each controller poll using cleanup_grace_s."
+    },
+    "telemetry_capacity": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "allowlist_capacity": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "quarantine_capacity": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "interface_requested": {
+      "type": "string",
+      "minLength": 1
+    },
+    "xdp_mode_requested": {
+      "enum": [
+        "AUTO",
+        "NATIVE",
+        "GENERIC",
+        "OFFLOAD",
+        "NONE"
+      ]
+    },
+    "git_commit": {
+      "type": "string",
+      "minLength": 1
+    },
+    "build_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "warmup_s": {
+      "type": "number",
+      "minimum": 0
+    },
+    "scan_s": {
+      "type": "number",
+      "minimum": 0
+    },
+    "minimum_post_scan_s": {
+      "type": "number",
+      "minimum": 0
+    },
+    "recovery_s": {
+      "type": "number",
+      "minimum": 0
+    },
+    "expected_logs": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string"
+      }
+    },
+    "workload_configs": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "notes": {
+      "type": "string"
+    },
+    "gateway_ip_actual": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "interface_actual": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "kernel": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "boot_id": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "nic_driver": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "xdp_mode_actual": {
+      "enum": [
+        "NATIVE",
+        "GENERIC",
+        "OFFLOAD",
+        "NONE",
+        "UNVERIFIED",
+        null
+      ]
+    },
+    "mtu": {
+      "type": [
+        "integer",
+        "null"
+      ],
+      "minimum": 576
+    },
+    "link_speed_mbps": {
+      "type": [
+        "integer",
+        "null"
+      ],
+      "minimum": 1
+    },
+    "cpu_governor": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "offload_state": {
+      "type": [
+        "object",
+        "null"
+      ]
+    },
+    "environment_realtime_iso": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "clock_sync_method": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "clock_sync_status": {
+      "enum": [
+        "SYNCHRONIZED",
+        "UNSYNCHRONIZED",
+        "UNKNOWN",
+        null
+      ]
+    },
+    "clock_offset_us": {
+      "type": [
+        "number",
+        "null"
+      ]
+    },
+    "clock_uncertainty_us": {
+      "type": [
+        "number",
+        "null"
+      ],
+      "minimum": 0
+    },
+    "health_log": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "temperature_guard_log": {
+      "type": [
+        "string",
+        "null"
+      ]
+    }
+  }
+}

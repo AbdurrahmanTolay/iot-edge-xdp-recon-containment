@@ -1,0 +1,78 @@
+{
+  "c4_engineering_preflight": {
+    "evidence_dir": "experiments/engineering/pre_main_c4_fix_v1",
+    "gates": {
+      "cleanup_complete": true,
+      "controller_selected_nft": true,
+      "nft_drop_counter_increased": true,
+      "nft_insert_success": true,
+      "xdp_quarantine_path_unused": true
+    },
+    "result": "PASS",
+    "run_id": "RECON_20260908_PI_ENG_C4_S1_R01"
+  },
+  "created_realtime_iso": "2026-09-08T07:06:35.674094+00:00",
+  "files": [
+    {
+      "path": "implementation/controller/recon_controller.c",
+      "sha256": "c05c5df2ad39f788a9f8efbf13d133a6859f01307c45b3dffb9ba85d866ab662"
+    },
+    {
+      "path": "implementation/controller/recon_controller",
+      "sha256": "7383c4192bf66e9a35e10e95bf30564ed3a3207ce859467ec1a99c69d53976e7"
+    },
+    {
+      "path": "implementation/controller/state_machine.c",
+      "sha256": "c2898d0fec7df41c2fc54485f7dfb06eb196252162ad5b0b6075329a7e52da2e"
+    },
+    {
+      "path": "implementation/controller/state_machine.h",
+      "sha256": "54c5edcb0db7e006ff091d00e5cd124808887c8ccc7652348491672bb5cd9d32"
+    },
+    {
+      "path": "implementation/xdp/xdp_recon.c",
+      "sha256": "acec7cb3483f7030c10f212c3c1e459308ae0c0bd2c6cd87be2cc811a72c3f1d"
+    },
+    {
+      "path": "implementation/xdp/xdp_recon.o",
+      "sha256": "7c4f196679f2c97e3711a88c8eaf4ef07707854713dba0c607ed561fb7de6a9a"
+    },
+    {
+      "path": "implementation/comparators/nftables_quarantine.sh",
+      "sha256": "9dd345f3ab979b2abd044fdf360e53cddc291457b7464d371ed739a99d22c1b9"
+    },
+    {
+      "path": "implementation/comparators/nftables_cleanup.sh",
+      "sha256": "2f7ea5cb72096db180cbe9bc96b6cafedcf16c24f00e5f93163e2ef72905f1c9"
+    },
+    {
+      "path": "automation/run_single.py",
+      "sha256": "797a04c6345af9228b7e637ea8689f49438a4d382ca688391a5568cba5a18d6e"
+    },
+    {
+      "path": "automation/nft_counter_logger.py",
+      "sha256": "a8d1b59f0ad7622e6ae9868ee1750545823c16c209ab7e9f31d2d51542ed1cde"
+    },
+    {
+      "path": "automation/cleanup.sh",
+      "sha256": "ddbef72a097e76f46980b42f03ce6d4435fe2ea6651596e5f8db1ef8daeabab0"
+    },
+    {
+      "path": "automation/runtime_config.json",
+      "sha256": "fb7bbddc3acd46331658376f7d518024d30eb936b05e2710b86a5e1140d1686a"
+    },
+    {
+      "path": "data/schemas/run_manifest.schema.json",
+      "sha256": "89fd0e953105b50d366aaadc28a08729b5890fad6a272f0d158c1f0835cfce36"
+    }
+  ],
+  "freeze_id": "MAIN_IMPLEMENTATION_FREEZE_V2_20260908",
+  "governance_note": "This freeze does not modify or reinterpret the 24-run calibration freeze. Calibration remains bound to the historical controller hash. MAIN execution uses this implementation freeze.",
+  "purpose": "Post-calibration implementation freeze for MAIN execution. Scientific detector, timing, and capacity parameters remain those already frozen in frozen_parameters.json. This version records the pre-MAIN C4 enforcement-path repair discovered during engineering audit.",
+  "status": "PRE_MAIN_FROZEN",
+  "supersedes_controller_provenance": {
+    "calibration_binary_sha256": "b4de847cb7a96e7d857e502ee0a51ca6cbef819e1262795f931d7c65e559c82b",
+    "calibration_source_sha256": "5fa63a724363ba8c23c8aa73bffd595be2c12b28e40a2b99c0729a5d5a149a6f",
+    "reason": "Pre-MAIN audit showed C4 was labeled NFT but still routed policy installation through the XDP quarantine map. The repair changes only the C4 enforcement adapter wiring. No MAIN runs had begun."
+  }
+}
